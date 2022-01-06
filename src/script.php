@@ -1,17 +1,13 @@
-<?php 
+<?php
     $categories = [];
     $categories [] = 'Children';
     $categories [] = 'Youngers';
     $categories [] = 'Adults';
-
     //print_r($categories);
-
-    $name = 'Gus';
+    $name = $_POST['name'];
     //var_dump($name);
-
-    $age = 26;
+    $age = $_POST['age'];
     //var_dump($age);
-
     
     if ($age >= 6 && $age <= 12){
         for ($x = 0; $x <= count ($categories); $x++){

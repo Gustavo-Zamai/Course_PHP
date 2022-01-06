@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     $categories = [];
     $categories [] = 'Children';
     $categories [] = 'Youngers';
@@ -11,44 +13,56 @@
     
     //validation of $name
     if (empty($name)){
-        echo 'Name cant be empty!';
+        $_SESSION['Error message'] = 'Name cant be empty!';
+        Header ('location: index.php');
         return;
     }
 
-    if (strlen($name) < 3){
-        echo 'Name must have contain 3 character';
+    else if (strlen($name) < 3){
+        $_SESSION['Error message'] = 'Name must contain 3 characters!';
+        Header ('location: index.php');
         return;
     }
-    if (strlen($name) > 35){
-        echo 'Name is too lengthy';
+    else if (strlen($name) > 35){
+        $_SESSION['Error message'] = 'Name is to lengthy!';
+        Header ('location: index.php');
         return;
     }
 
     //validation of $age
-    if (!is_numeric($age)){
-        echo 'Invalid age';
+    else if (!is_numeric($age)){
+        $_SESSION['Error message'] = 'Invalid age!';
+        Header ('location: index.php');
         return;
     }
 
 
+////////////END OF VALIDATION//////////////////////////
 
 
+/////////////////////////////////////////////////////
     if ($age >= 6 && $age <= 12){
         for ($x = 0; $x <= count ($categories); $x++){
             if ($categories == 'Children'){
-                echo 'The athlete '.$name.' will play at '.$categories.'.';
+                $_SESSION['successMessage'] = 'The athlete '.$name.' will play at '.$categories.'.';
+                header ('location: index.php');
+                return;
             }
         }
     }else if ($age >= 13 && $age <= 18) {
         for ($x = 0; $x <= count($categories); $x++){
             if ($categories == 'Youngers'){
-                echo 'The athlete '.$name.' will play at '.$categories.'.';
+                $_SESSION['successMessage'] = 'The athlete '.$name.' will play at '.$categories.'.';
+                header ('location: index.php');
+                return;
             }
         }
     } else {
         for ($x = 0; $x <= count($categories); $x++){
             if ($categories == 'Adults'){
-                echo 'The athlete '.$name.' will play at '.$categories.'.';
+                $_SESSION['successMessage'] = 'The athlete '.$name.' will play at '.$categories.'.';
+                header ('location: index.php');    
+                return;
             }
         }
     }

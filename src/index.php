@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +13,17 @@
     <p>Registration Form</p>    
 
     <form action="script.php" method="post">
+        <?php
+            $errorMessage = isset($_SESSION['Error message']) ? $_SESSION['Error message']: '';
+            if(!empty($errorMessage)){
+            echo $errorMessage;
+            }
+
+            $successMessage = isset($_SESSION['Success message']) ? $_SESSION['Success message']: '';
+            if(!empty($successMessage)){
+            echo $successMessage;
+            }
+        ?>
         <p>Your name: <input type="text" name="name"/></p>
         <p>Your age: <input type="text" name="age"/></p>
         <p><input type="submit" value="Send"/></p>

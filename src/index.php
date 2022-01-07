@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include "services/sessionMessage.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +14,12 @@
 
     <form action="script.php" method="post">
         <?php
-            $errorMessage = isset($_SESSION['Error message']) ? $_SESSION['Error message']: '';
+            $errorMessage = rescueErrorMessage();
             if(!empty($errorMessage)){
             echo $errorMessage;
             }
 
-            $successMessage = isset($_SESSION['Success message']) ? $_SESSION['Success message']: '';
+            $successMessage = rescueSuccessMessage();
             if(!empty($successMessage)){
             echo $successMessage;
             }
